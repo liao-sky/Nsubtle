@@ -14,13 +14,11 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import com.nsubtle.events.RegistryEvents.*;
 
-import java.awt.*;
-
 public class NsubtleEffects {
-    public static class BREAK_DEFENSE extends NsubtleEffect{
+    public static class BROKEN_DEFENSE extends NsubtleEffect{
 
 
-        public BREAK_DEFENSE() {
+        public BROKEN_DEFENSE() {
             super(MobEffectCategory.HARMFUL,0x660033);
         }
 
@@ -51,7 +49,8 @@ public class NsubtleEffects {
     private static float P = 1.0f;
     public static Style DARK_RED = Style.EMPTY.withColor(TextColor.fromRgb(0xaa0000));
     @SubscribeEvent
-    public static void BreakDefense(LivingDamageEvent.Pre event) {
+    public static void BrokenDefense(LivingDamageEvent.Pre event) {
+        //Nsubtle.LOGGER.warn("Broken Defense");
         LivingEntity entity = event.getEntity();
         Player player = null;
         if (entity instanceof Player) {
@@ -63,28 +62,28 @@ public class NsubtleEffects {
         }
         float amount = event.getNewDamage();
         int ArmorValue = entity.getArmorValue();
-        MobEffectInstance Effect = entity.getEffect(EffectRegistry.BREAK_DEFENSE);
+        MobEffectInstance Effect = entity.getEffect(EffectRegistry.BROKEN_DEFENSE);
         if(Effect!=null
-                && amount>ArmorValue*0.3f
+                && amount>ArmorValue*0.7f
                 && entity.getArmorValue()!=0
         ){
             int amplified = Effect.getAmplifier();
             if (entity.getRandom().nextFloat()<0.25f * P){
                 event.setNewDamage(amount*(amplified+11)/10);
                 if (player != null) {
-                    player.displayClientMessage(Component.translatable("effect.nsubtle.break_defense.hurt", (float) (amplified + 11) / 10).setStyle(DARK_RED),true);
+                    player.displayClientMessage(Component.translatable("effect.nsubtle.broken_defense.hurt", (float) (amplified + 11) / 10).setStyle(DARK_RED),true);
                 }
             }
             if (entity.getRandom().nextFloat()<0.25f * P) {
                 amplified++;
-                entity.addEffect(new MobEffectInstance(EffectRegistry.BREAK_DEFENSE.getDelegate(), (int) (20 * amount), amplified));
+                entity.addEffect(new MobEffectInstance(EffectRegistry.BROKEN_DEFENSE.getDelegate(), (int) (20 * amount), amplified));
                 if (player != null) {
-                    player.displayClientMessage(Component.translatable("effect.nsubtle.break_defense.break_again",(float) (amplified + 11) /10).setStyle(DARK_RED),true);
+                    player.displayClientMessage(Component.translatable("effect.nsubtle.broken_defense.break_again",(float) (amplified + 11) /10).setStyle(DARK_RED),true);
                 }
             }
             if (amplified >= 9){
                 if (player != null) {
-                    player.displayClientMessage(Component.translatable("effect.nsubtle.break_defense.warning"),true);
+                    player.displayClientMessage(Component.translatable("effect.nsubtle.broken_defense.warning"),true);
                 }
             }
             if (entity.getRandom().nextFloat()<0.05f * Math.abs(amplified-3) * P && amplified >= 10){
@@ -95,7 +94,7 @@ public class NsubtleEffects {
                         entity.setItemSlot(slot, ItemStack.EMPTY);
                         entity.getItemBySlot(slot).shrink(1);
                         if (player != null) {
-                            player.displayClientMessage(Component.translatable("effect.nsubtle.break_defense.armor_break"),true);
+                            player.displayClientMessage(Component.translatable("effect.nsubtle.broken_defense.armor_break"),true);
                         }
                     }
                 }
@@ -106,9 +105,9 @@ public class NsubtleEffects {
                 && amount>ArmorValue*0.2f
                 && entity.getArmorValue()!=0
         ) {
-            entity.addEffect(new MobEffectInstance(EffectRegistry.BREAK_DEFENSE.getDelegate(), (int) (20 * amount), 0));
+            entity.addEffect(new MobEffectInstance(EffectRegistry.BROKEN_DEFENSE.getDelegate(), (int) (20 * amount), 0));
             if (player != null) {
-                player.displayClientMessage(Component.translatable("effect.nsubtle.break_defense.break"),true);
+                player.displayClientMessage(Component.translatable("effect.nsubtle.broken_defense.break"),true);
             }
         }
     }

@@ -1,4 +1,10 @@
 {
+  "effect.nsubtle.broken_defense": "破防",
+  "effect.nsubtle.broken_defense.armor_break": "§4!你的甲不堪重负!§4",
+  "effect.nsubtle.broken_defense.break": "§d!?(被)破防?!§d",
+  "effect.nsubtle.broken_defense.break_again": "§d破防+1!§d §4受到伤害x%s(有概率)§4",
+  "effect.nsubtle.broken_defense.hurt": "§4受到伤害%s§4",
+  "effect.nsubtle.broken_defense.warning": "§4!警告，破防层数过高!§4",
   "item.nsubtle.gold_head": "金头",
   "item.nsubtle.soup": "羹",
   "itemGroup.nsubtle.nsubtle": "Nsubtle"

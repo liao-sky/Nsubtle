@@ -33,7 +33,7 @@ public class FoodList {
             .saturationModifier(1f)
             .alwaysEdible()
             .build();
-    public static final Consumable gold_head=(Consumables.defaultFood()
+    public static final Consumable gold_head=(Consumables.defaultFood().consumeSeconds(0.8f)
             .onConsume(effect(new MobEffectInstance(MobEffects.REGENERATION,15*20,1),1f))
             .onConsume(effect(new MobEffectInstance(MobEffects.RESISTANCE,10*20,1),0.8f))
             .onConsume(effect(new MobEffectInstance(MobEffects.ABSORPTION,15*20,1),1f))

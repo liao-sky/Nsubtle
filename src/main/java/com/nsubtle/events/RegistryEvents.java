@@ -1,7 +1,6 @@
 package com.nsubtle.events;
 
 
-import com.nsubtle.effect.NsubtleEffect;
 import com.nsubtle.effect.NsubtleEffects;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
@@ -34,7 +33,7 @@ public class RegistryEvents {
 
     public static class EffectRegistry{
         public static final DeferredRegister<MobEffect> MOB_EFFECTS = DeferredRegister.create(Registries.MOB_EFFECT,MOD_ID);
-        public static final Holder<MobEffect> BREAK_DEFENSE = MOB_EFFECTS.register("break_defense",()->new NsubtleEffects.BREAK_DEFENSE() {
+        public static final Holder<MobEffect> BROKEN_DEFENSE = MOB_EFFECTS.register("broken_defense",()->new NsubtleEffects.BROKEN_DEFENSE() {
         });
     }
 

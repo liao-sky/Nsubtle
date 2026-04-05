@@ -4,7 +4,6 @@ package com.nsubtle;
 import com.nsubtle.datagen.EnUsLangProvider;
 import com.nsubtle.datagen.ModModelProvider;
 import com.nsubtle.datagen.ZnChLangProvider;
-import net.minecraft.data.DataGenerator;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
