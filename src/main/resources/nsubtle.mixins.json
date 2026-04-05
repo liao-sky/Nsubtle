@@ -2,7 +2,9 @@
   "required": true,
   "package": "com.nsubtle.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [],
+  "mixins": [
+    "TreeBoomMixin$SaplingBlockMixin"
+  ],
   "injectors": {
     "defaultRequire": 1
   },
