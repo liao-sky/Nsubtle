@@ -1,20 +1,24 @@
 package com.nsubtle.util;
 
+import net.minecraft.core.BlockPos;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 public class MarkUtils {
 
-    public static class GrowthContext {
-        private static final ThreadLocal<Boolean> IS_BONEMEAL_GROWTH = new ThreadLocal<>();
+    public static class BoneMealMarkHelper {
+        private static final Map<BlockPos, Boolean> MARK = new ConcurrentHashMap<>();
 
-        public static void markAsBonemeal() {
-            IS_BONEMEAL_GROWTH.set(true);
+        public static void mark(BlockPos pos) {
+            MARK.put(pos, true);
         }
 
-        public static boolean isBonemealGrowth() {
-            return IS_BONEMEAL_GROWTH.get() == Boolean.TRUE;
+        public static boolean isMarked(BlockPos pos) {
+            return MARK.getOrDefault(pos, false);
         }
 
-        public static void clear() {
-            IS_BONEMEAL_GROWTH.remove();
+        public static void clear(BlockPos pos) {
+            MARK.remove(pos);
         }
     }
 }
