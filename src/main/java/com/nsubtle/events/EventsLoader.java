@@ -13,6 +13,7 @@ public class EventsLoader {
         RegistryEvents.EffectRegistry.MOB_EFFECTS.register(bus);
 
         bus.addListener(ModEvents::addCreativeTab);
+        NeoForge.EVENT_BUS.addListener(ModEvents::bucketRightClick);
         NeoForge.EVENT_BUS.register(NsubtleEffects.class);
     }
 }
