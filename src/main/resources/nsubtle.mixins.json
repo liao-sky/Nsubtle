@@ -3,7 +3,8 @@
   "package": "com.nsubtle.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "TreeBoomMixin$SaplingBlockMixin"
+    "TreeBoomMixin$SaplingBlockMixin",
+    "WaterBucketMixin$TridentItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1
