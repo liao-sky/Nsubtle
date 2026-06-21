@@ -15,6 +15,8 @@ import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import com.nsubtle.events.RegistryEvents.*;
 
 public class NsubtleEffects {
+    private static float P = 1.0f;
+
     public static class BROKEN_DEFENSE extends NsubtleEffect{
 
 
@@ -32,7 +34,9 @@ public class NsubtleEffects {
         public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
             amplifier++;
             for (EquipmentSlot slot : EquipmentSlot.values()) {
-                DamageItemInSlot(slot,entity,amplifier);
+                if(entity.getRandom().nextFloat()<0.75*P){
+                    DamageItemInSlot(slot,entity,amplifier);
+                }
             }
             return true;
         }
@@ -40,13 +44,13 @@ public class NsubtleEffects {
         public void DamageItemInSlot(EquipmentSlot slot, LivingEntity livingBase, int amount) {
             if (slot!=EquipmentSlot.OFFHAND && slot!=EquipmentSlot.MAINHAND) {
                 ItemStack stack = livingBase.getItemBySlot(slot);
-                stack.setDamageValue(stack.getDamageValue()+amount);
+                if (!stack.isEmpty()) {
+                stack.hurtAndBreak(stack.getDamageValue()+amount,livingBase,slot);}
             }
         }
 
     }
 
-    private static float P = 1.0f;
     public static Style DARK_RED = Style.EMPTY.withColor(TextColor.fromRgb(0xaa0000));
     @SubscribeEvent
     public static void BrokenDefense(LivingDamageEvent.Pre event) {
