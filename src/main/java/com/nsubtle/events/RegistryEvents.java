@@ -2,6 +2,7 @@ package com.nsubtle.events;
 
 
 import com.nsubtle.effect.NsubtleEffects;
+import com.nsubtle.list.ItemList;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
@@ -41,13 +42,15 @@ public class RegistryEvents {
         public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MOD_ID);
         public static final DeferredItem<Item> soup = ITEMS.registerItem("soup",
                 properties -> new Item(properties.rarity(Rarity.RARE)
-                        .stacksTo(1).food(FoodList.soup_fp,FoodList.soup)
-                        ));
+                        .stacksTo(1).food(FoodList.soup_fp,FoodList.soup)));
 
         public static final DeferredItem<Item> gold_head = ITEMS.registerItem("gold_head",
                 properties ->  new Item(properties.rarity(Rarity.RARE)
                         .component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE,true)
                         .food(FoodList.gold_head_fp,FoodList.gold_head)
                         .stacksTo(16)));
+
+        //public static final DeferredItem<Item> example = ITEMS.registerItem("example",properties->
+                //new Item(ItemList.example));
     }
 }

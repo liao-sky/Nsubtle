@@ -8,7 +8,7 @@ import static com.nsubtle.Nsubtle.MOD_ID;
 
 public class ZnChLangProvider extends LanguageProvider {
     public ZnChLangProvider(PackOutput output) {
-        super(output,MOD_ID , "zh_CN");
+        super(output,MOD_ID , "zh_cn");
     }
 
     @Override

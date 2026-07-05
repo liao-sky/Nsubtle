@@ -44,8 +44,7 @@ public class NsubtleEffects {
         public void DamageItemInSlot(EquipmentSlot slot, LivingEntity livingBase, int amount) {
             if (slot!=EquipmentSlot.OFFHAND && slot!=EquipmentSlot.MAINHAND) {
                 ItemStack stack = livingBase.getItemBySlot(slot);
-                if (!stack.isEmpty()) {
-                stack.hurtAndBreak(stack.getDamageValue()+amount,livingBase,slot);}
+                stack.setDamageValue(stack.getDamageValue()+amount);
             }
         }
 
