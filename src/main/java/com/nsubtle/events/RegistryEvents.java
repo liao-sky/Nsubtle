@@ -2,16 +2,20 @@ package com.nsubtle.events;
 
 
 import com.nsubtle.effect.NsubtleEffects;
+import com.nsubtle.list.ItemList;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.alchemy.Potion;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import com.nsubtle.Nsubtle;
@@ -41,7 +45,7 @@ public class RegistryEvents {
         public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MOD_ID);
         public static final DeferredItem<Item> soup = ITEMS.registerItem("soup",
                 properties -> new Item(properties.rarity(Rarity.RARE)
-                        .stacksTo(4).food(FoodList.soup_fp,FoodList.soup)));
+                        .stacksTo(16).food(FoodList.soup_fp,FoodList.soup)));
 
         public static final DeferredItem<Item> gold_head = ITEMS.registerItem("gold_head",
                 properties ->  new Item(properties.rarity(Rarity.RARE)
@@ -49,7 +53,13 @@ public class RegistryEvents {
                         .food(FoodList.gold_head_fp,FoodList.gold_head)
                         .stacksTo(16)));
 
-        //public static final DeferredItem<Item> example = ITEMS.registerItem("example",properties->
-                //new Item(ItemList.example));
+        public static final DeferredItem<Item> explosive_powder = ITEMS.registerItem("explosive_powder",properties->
+                new Item(ItemList.explosive_powder(properties)));
+    }
+
+    public static class PotionRegistry{
+        public static final DeferredRegister<Potion> POTIONS = DeferredRegister.create(Registries.POTION, MOD_ID);
+        public static final DeferredHolder<Potion,Potion> POTION_BROKEN_DEFENSE = POTIONS.register("broken_defense",
+                ()-> new Potion("broken_defense",new MobEffectInstance(EffectRegistry.BROKEN_DEFENSE.getDelegate(),20*30,0)));
     }
 }

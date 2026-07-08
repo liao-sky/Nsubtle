@@ -15,7 +15,13 @@ public class ZnChLangProvider extends LanguageProvider {
     protected void addTranslations() {
         add(RegistryEvents.ItemRegistry.soup.get(), "羹");
         add(RegistryEvents.ItemRegistry.gold_head.get(), "金头");
+        add(RegistryEvents.ItemRegistry.explosive_powder.get(),"爆裂粉末");
         add(RegistryEvents.EffectRegistry.BROKEN_DEFENSE.value(),"破防");
+
+        add("item.minecraft.potion.effect.broken_defense","破防药水");
+        add("item.minecraft.splash_potion.effect.broken_defense","喷溅的破防药水");
+        add("item.minecraft.lingering_potion.effect.broken_defense","滞留的破防药水");
+        add("item.minecraft.tipped_arrow.effect.broken_defense", "破防之箭");
 
         add(("itemGroup."+MOD_ID+".nsubtle"), "Nsubtle");
         add("effect.nsubtle.broken_defense.hurt","§4受到伤害x%s§4");

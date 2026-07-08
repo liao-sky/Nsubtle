@@ -16,9 +16,6 @@ public class WaterBucketMixin {
     @Mixin(TridentItem.class)
     public abstract static class TridentItemMixin {
 
-        /**
-         * 修改 use() 中的 isInWaterOrRain 判断，允许副手水桶时开始蓄力
-         */
         @ModifyExpressionValue(
                 method = "use",
                 at = @At(
@@ -33,9 +30,6 @@ public class WaterBucketMixin {
             return original;
         }
 
-        /**
-         * 修改 releaseUsing() 中的 isInWaterOrRain 判断，允许副手水桶时成功释放激流
-         */
         @ModifyExpressionValue(
                 method = "releaseUsing",
                 at = @At(
@@ -46,7 +40,6 @@ public class WaterBucketMixin {
         private boolean allowReleaseWithBucket(boolean original,
                                                ItemStack stack, Level level,
                                                LivingEntity entity, int useDuration) {
-            // releaseUsing 中 entity 已经被强转为 Player
             if (!original && entity instanceof Player player
                     && player.getOffhandItem().is(Items.WATER_BUCKET)) {
                 return true;

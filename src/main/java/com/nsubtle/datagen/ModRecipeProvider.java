@@ -44,8 +44,17 @@ public class ModRecipeProvider extends RecipeProvider {
                 .define('B', Items.GOLDEN_APPLE)
                 .unlockedBy("has_lapis_lazuli", has(Items.LAPIS_LAZULI))
                 .save(output);
-    }
 
+        ShapedRecipeBuilder.shaped(items, RecipeCategory.MISC, RegistryEvents.ItemRegistry.explosive_powder.asItem(),4)
+                .pattern("LGL")
+                .pattern("GBG")
+                .pattern("LGL")
+                .define('L', Items.GUNPOWDER)
+                .define('G', Items.REDSTONE)
+                .define('B', Items.GHAST_TEAR)
+                .unlockedBy("has_ghast_tear", has(Items.GHAST_TEAR))
+                .save(output);
+    }
 
     public HolderGetter<Item> getItems() {
         return items;

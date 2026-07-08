@@ -11,6 +11,7 @@ public class EventsLoader {
         RegistryEvents.CreativeTabs.CREATIVE_MODE_TABS.register(bus);
         RegistryEvents.ItemRegistry.ITEMS.register(bus);
         RegistryEvents.EffectRegistry.MOB_EFFECTS.register(bus);
+        RegistryEvents.PotionRegistry.POTIONS.register(bus);
 
         bus.addListener(ModEvents::addCreativeTab);
         NeoForge.EVENT_BUS.addListener(ModEvents::bucketRightClick);
