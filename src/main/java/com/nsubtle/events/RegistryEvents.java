@@ -42,7 +42,7 @@ public class RegistryEvents {
         public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MOD_ID);
         public static final DeferredItem<Item> soup = ITEMS.registerItem("soup",
                 properties -> new Item(properties.rarity(Rarity.RARE)
-                        .stacksTo(1).food(FoodList.soup_fp,FoodList.soup)));
+                        .stacksTo(4).food(FoodList.soup_fp,FoodList.soup)));
 
         public static final DeferredItem<Item> gold_head = ITEMS.registerItem("gold_head",
                 properties ->  new Item(properties.rarity(Rarity.RARE)
