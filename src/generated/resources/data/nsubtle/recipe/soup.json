@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": "minecraft:bowl",
+    "G": "minecraft:gold_nugget",
+    "L": "minecraft:lapis_lazuli"
+  },
+  "pattern": [
+    "LGL",
+    "GBG",
+    "LGL"
+  ],
+  "result": {
+    "count": 2,
+    "id": "nsubtle:soup"
+  }
+}

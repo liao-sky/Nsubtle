@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": "minecraft:ghast_tear",
+    "G": "minecraft:redstone",
+    "L": "minecraft:gunpowder"
+  },
+  "pattern": [
+    "LGL",
+    "GBG",
+    "LGL"
+  ],
+  "result": {
+    "count": 4,
+    "id": "nsubtle:explosive_powder"
+  }
+}

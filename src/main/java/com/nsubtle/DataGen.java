@@ -1,10 +1,7 @@
 package com.nsubtle;
 
 
-import com.nsubtle.datagen.EnUsLangProvider;
-import com.nsubtle.datagen.ModModelProvider;
-import com.nsubtle.datagen.ModRecipeProvider;
-import com.nsubtle.datagen.ZnChLangProvider;
+import com.nsubtle.datagen.*;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;

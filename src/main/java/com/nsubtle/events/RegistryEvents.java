@@ -4,9 +4,12 @@ package com.nsubtle.events;
 import com.nsubtle.effect.NsubtleEffects;
 import com.nsubtle.list.ItemList;
 import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.Unit;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.item.CreativeModeTab;
@@ -22,6 +25,7 @@ import com.nsubtle.Nsubtle;
 import com.nsubtle.list.FoodList;
 
 import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
 
 @EventBusSubscriber
 public class RegistryEvents {
@@ -61,5 +65,14 @@ public class RegistryEvents {
         public static final DeferredRegister<Potion> POTIONS = DeferredRegister.create(Registries.POTION, MOD_ID);
         public static final DeferredHolder<Potion,Potion> POTION_BROKEN_DEFENSE = POTIONS.register("broken_defense",
                 ()-> new Potion("broken_defense",new MobEffectInstance(EffectRegistry.BROKEN_DEFENSE.getDelegate(),20*30,0)));
+    }
+
+    public static class EnchantmentRegistry{
+        public static final DeferredRegister<DataComponentType<?>> ENCHANTMENTS = DeferredRegister.create(BuiltInRegistries.ENCHANTMENT_EFFECT_COMPONENT_TYPE, MOD_ID);
+        public static final DeferredHolder<DataComponentType<?>, DataComponentType<Unit>> tough = register("tough", builder -> builder.persistent(Unit.CODEC));
+
+        private static <T> DeferredHolder<DataComponentType<?>, DataComponentType<T>> register(String path, UnaryOperator<DataComponentType.Builder<T>> pOperator) {
+            return ENCHANTMENTS.register(path, () -> pOperator.apply(DataComponentType.builder()).build());
+        }
     }
 }

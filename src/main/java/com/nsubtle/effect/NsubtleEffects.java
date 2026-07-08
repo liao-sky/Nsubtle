@@ -3,7 +3,11 @@ package com.nsubtle.effect;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -14,6 +18,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import com.nsubtle.events.RegistryEvents.*;
 
+import java.util.Set;
 public class NsubtleEffects {
     private static float P = 1.0f;
 
@@ -26,7 +31,7 @@ public class NsubtleEffects {
 
         @Override
         public boolean shouldApplyEffectTickThisTick(int remainingTicks, int level) {
-            return remainingTicks % 7 == 0;
+            return remainingTicks % 11 == 0;
         }
 
 
@@ -34,7 +39,7 @@ public class NsubtleEffects {
         public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
             amplifier++;
             for (EquipmentSlot slot : EquipmentSlot.values()) {
-                if(entity.getRandom().nextFloat()<0.75*P){
+                if(entity.getRandom().nextFloat()<0.5*P){
                     DamageItemInSlot(slot,entity,amplifier);
                 }
             }
@@ -51,10 +56,23 @@ public class NsubtleEffects {
     }
 
     public static Style DARK_RED = Style.EMPTY.withColor(TextColor.fromRgb(0xaa0000));
+    private static final Set<ResourceKey<DamageType>> ALLOWED_TYPES = Set.of(
+            DamageTypes.MOB_ATTACK,
+            DamageTypes.PLAYER_ATTACK,
+            DamageTypes.TRIDENT,
+            DamageTypes.ARROW
+    );
     @SubscribeEvent
     public static void BrokenDefense(LivingDamageEvent.Pre event) {
         //Nsubtle.LOGGER.warn("Broken Defense");
         LivingEntity entity = event.getEntity();
+        DamageSource source = event.getSource();
+        boolean notAllowed = !source.typeHolder().unwrapKey()
+                .map(ALLOWED_TYPES::contains).orElse(false);
+        if (notAllowed) {
+            //Nsubtle.LOGGER.warn("warp");
+            return;
+        }
         Player player = null;
         if (entity instanceof Player) {
             player = (Player) entity;
@@ -105,7 +123,7 @@ public class NsubtleEffects {
 
         }
         else if (entity.getRandom().nextFloat()<0.25f * P
-                && amount>ArmorValue*0.2f
+                && amount>ArmorValue*0.3f
                 && entity.getArmorValue()!=0
         ) {
             entity.addEffect(new MobEffectInstance(EffectRegistry.BROKEN_DEFENSE.getDelegate(), (int) (20 * amount), 0));
