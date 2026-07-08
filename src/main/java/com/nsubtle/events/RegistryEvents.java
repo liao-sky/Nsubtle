@@ -2,7 +2,6 @@ package com.nsubtle.events;
 
 
 import com.nsubtle.effect.NsubtleEffects;
-import com.nsubtle.list.ItemList;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
