@@ -1,10 +1,12 @@
 package com.nsubtle.datagen;
 
 import com.nsubtle.events.RegistryEvents;
+import com.nsubtle.list.EnchantmentList;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
 import static com.nsubtle.Nsubtle.MOD_ID;
+import static com.nsubtle.datagen.DataToolKit.*;
 
 public class ZnChLangProvider extends LanguageProvider {
     public ZnChLangProvider(PackOutput output) {
@@ -22,6 +24,10 @@ public class ZnChLangProvider extends LanguageProvider {
         add("item.minecraft.splash_potion.effect.broken_defense","喷溅的破防药水");
         add("item.minecraft.lingering_potion.effect.broken_defense","滞留的破防药水");
         add("item.minecraft.tipped_arrow.effect.broken_defense", "破防之箭");
+
+        addEnchantment(this, EnchantmentList.TOUGH,"坚韧");
+        addEnchantmentDescription(this,EnchantmentList.TOUGH,"你的盔甲将更加坚硬，不再容易破防");
+
 
         add(("itemGroup."+MOD_ID+".nsubtle"), "Nsubtle");
         add("effect.nsubtle.broken_defense.hurt","§4受到伤害x%s§4");

@@ -5,6 +5,8 @@
   "effect.nsubtle.broken_defense.break_again": "§d破防+1!§d §4受到伤害x%s(有概率)§4",
   "effect.nsubtle.broken_defense.hurt": "§4受到伤害x%s§4",
   "effect.nsubtle.broken_defense.warning": "§4!警告，破防层数过高!§4",
+  "enchantment.nsubtle.tough": "坚韧",
+  "enchantment.nsubtle.tough.desc": "你的盔甲将更加坚硬，不再容易破防",
   "item.minecraft.lingering_potion.effect.broken_defense": "滞留的破防药水",
   "item.minecraft.potion.effect.broken_defense": "破防药水",
   "item.minecraft.splash_potion.effect.broken_defense": "喷溅的破防药水",

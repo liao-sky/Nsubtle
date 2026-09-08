@@ -19,7 +19,7 @@ import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 @EventBusSubscriber(modid = Nsubtle.MOD_ID)
-public class ModEnchantmentProvider {
+public class EnchantmentProvider {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent.Client event) {
         DataGenerator generator = event.getGenerator();

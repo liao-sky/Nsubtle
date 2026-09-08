@@ -15,6 +15,7 @@ import net.minecraft.world.item.enchantment.Enchantment;
 public class EnchantmentList {
     public static final ResourceKey<Enchantment> TOUGH = key("tough");
 
+
     public static void bootstrap(BootstrapContext<Enchantment>  context) {
         HolderGetter<Item> itemHolderGetter = context.lookup(Registries.ITEM);
 

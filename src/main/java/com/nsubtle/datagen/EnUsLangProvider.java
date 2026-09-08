@@ -1,10 +1,13 @@
 package com.nsubtle.datagen;
 
 import com.nsubtle.events.RegistryEvents;
+import com.nsubtle.list.EnchantmentList;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 
 import static com.nsubtle.Nsubtle.MOD_ID;
+import static com.nsubtle.datagen.DataToolKit.addEnchantment;
+import static com.nsubtle.datagen.DataToolKit.addEnchantmentDescription;
 
 public class EnUsLangProvider extends LanguageProvider {
     public EnUsLangProvider(PackOutput output) {
@@ -22,6 +25,9 @@ public class EnUsLangProvider extends LanguageProvider {
         add("item.minecraft.splash_potion.effect.broken_defense", "Splash Potion of Broken Defense");
         add("item.minecraft.lingering_potion.effect.broken_defense", "Lingering Potion of Broken Defense");
         add("item.minecraft.tipped_arrow.effect.broken_defense", "Arrow of Broken Defense");
+
+        addEnchantment(this, EnchantmentList.TOUGH,"tough");
+        addEnchantmentDescription(this,EnchantmentList.TOUGH,"Your armor will be tougher and won't break as easily.");
 
         add(("itemGroup."+MOD_ID+".nsubtle"), "Nsubtle");
         add("effect.nsubtle.broken_defense.hurt","§4 TAKE DAMAGE x%s§4");

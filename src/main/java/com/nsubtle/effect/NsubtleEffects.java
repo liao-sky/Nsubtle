@@ -1,5 +1,6 @@
 package com.nsubtle.effect;
 
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
@@ -14,17 +15,17 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import com.nsubtle.events.RegistryEvents.*;
 
 import java.util.Set;
 public class NsubtleEffects {
-    private static float P = 1.0f;
 
     public static class BROKEN_DEFENSE extends NsubtleEffect{
 
-
+        float P=1.0f;
         public BROKEN_DEFENSE() {
             super(MobEffectCategory.HARMFUL,0x660033);
         }
@@ -39,7 +40,7 @@ public class NsubtleEffects {
         public boolean applyEffectTick(ServerLevel level, LivingEntity entity, int amplifier) {
             amplifier++;
             for (EquipmentSlot slot : EquipmentSlot.values()) {
-                if(entity.getRandom().nextFloat()<0.5*P){
+                if(entity.getRandom().nextFloat()<0.5*P && slot!=EquipmentSlot.OFFHAND && slot!=EquipmentSlot.MAINHAND){
                     DamageItemInSlot(slot,entity,amplifier);
                 }
             }
@@ -47,10 +48,8 @@ public class NsubtleEffects {
         }
 
         public void DamageItemInSlot(EquipmentSlot slot, LivingEntity livingBase, int amount) {
-            if (slot!=EquipmentSlot.OFFHAND && slot!=EquipmentSlot.MAINHAND) {
                 ItemStack stack = livingBase.getItemBySlot(slot);
                 stack.setDamageValue(stack.getDamageValue()+amount);
-            }
         }
 
     }
@@ -65,22 +64,19 @@ public class NsubtleEffects {
     @SubscribeEvent
     public static void BrokenDefense(LivingDamageEvent.Pre event) {
         //Nsubtle.LOGGER.warn("Broken Defense");
-        LivingEntity entity = event.getEntity();
         DamageSource source = event.getSource();
         boolean notAllowed = !source.typeHolder().unwrapKey()
                 .map(ALLOWED_TYPES::contains).orElse(false);
-        if (notAllowed) {
-            //Nsubtle.LOGGER.warn("warp");
-            return;
-        }
+        if (notAllowed) return;
+        float P=1.0f;
+        LivingEntity entity = event.getEntity();
         Player player = null;
         if (entity instanceof Player) {
             player = (Player) entity;
-            P-= player.getLuck()/100;
-            if (P<0.01f) {
-                P = 0.01f;
-            }
+            P = Math.max(P-player.getLuck()/100,0.01f);
         }
+        //int toughLevel = getEnchantmentLevel(EnchantmentList.TOUGH_HOLDER,entity);
+
         float amount = event.getNewDamage();
         int ArmorValue = entity.getArmorValue();
         MobEffectInstance Effect = entity.getEffect(EffectRegistry.BROKEN_DEFENSE);
@@ -133,9 +129,18 @@ public class NsubtleEffects {
         }
     }
 
+    public static int getEnchantmentLevel(Holder<Enchantment> enchantment, LivingEntity entity) {
+        int level = 0;
+        for (EquipmentSlot slot : EquipmentSlot.values()) {
+            ItemStack armor = entity.getItemBySlot(slot);
+            int l = armor.getEnchantmentLevel(enchantment);
+            level += l;
+        }
+        return level;
+    }
 
-
-
-
-
+    public  static int getEnchantmentLevel(ResourceKey<Enchantment> enchantment, LivingEntity entity) {
+        int level = 0;
+        return level;
+    }
 }
