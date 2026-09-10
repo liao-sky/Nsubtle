@@ -71,13 +71,13 @@ neoForge {
             // 客户端数据生成（assets：模型、方块状态、语言）
         clientData {
                 clientData()
-                programArguments.addAll '--mod', mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+                programArguments.addAll '--mod', mod_id, '--all', '--output', file('src/generated/resources/client/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
         }
 
             // 服务器数据生成（data：配方、战利品表、附魔、标签）
         serverData {
                 serverData()
-                programArguments.addAll '--mod', mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+                programArguments.addAll '--mod', mod_id, '--all', '--output', file('src/generated/resources/server/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
         }
 
         configureEach {
