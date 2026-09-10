@@ -1,6 +1,8 @@
 package com.nsubtle.effect;
 
+import com.nsubtle.list.EnchantmentList;
 import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
@@ -75,7 +77,9 @@ public class NsubtleEffects {
             player = (Player) entity;
             P = Math.max(P-player.getLuck()/100,0.01f);
         }
-        //int toughLevel = getEnchantmentLevel(EnchantmentList.TOUGH_HOLDER,entity);
+        int toughLevel = getEnchantmentLevel(EnchantmentList.TOUGH,entity);
+        P = (float) Math.max(P-toughLevel*0.02,0.01f);
+        //Nsubtle.LOGGER.info("{} tough level: {}", entity.getName(), toughLevel);
 
         float amount = event.getNewDamage();
         int ArmorValue = entity.getArmorValue();
@@ -139,8 +143,13 @@ public class NsubtleEffects {
         return level;
     }
 
-    public  static int getEnchantmentLevel(ResourceKey<Enchantment> enchantment, LivingEntity entity) {
-        int level = 0;
-        return level;
+    public static int getEnchantmentLevel(ResourceKey<Enchantment> enchantmentKey, LivingEntity entity) {
+        var registryAccess = entity.registryAccess();
+        var enchantmentLookup = registryAccess.lookup(Registries.ENCHANTMENT);
+        if (enchantmentLookup.isEmpty()) {
+            return 0;
+        }
+        var holder = enchantmentLookup.get().get(enchantmentKey);
+        return holder.map(enchantmentReference -> getEnchantmentLevel(enchantmentReference, entity)).orElse(0);
     }
 }
