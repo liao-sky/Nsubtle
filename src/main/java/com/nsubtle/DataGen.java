@@ -19,7 +19,7 @@ public class DataGen {
     public static void OnClientGatherData(GatherDataEvent.Client event) {
         DataGenerator generator = event.getGenerator();
         PackOutput packOutput = generator.getPackOutput();
-        HolderLookup.Provider lookupProvider = event.getLookupProvider().join();
+        CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
         event.createProvider(ModModelProvider::new);
         event.createProvider(ZnChLangProvider::new);
