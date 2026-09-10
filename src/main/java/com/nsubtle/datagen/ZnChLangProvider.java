@@ -19,6 +19,7 @@ public class ZnChLangProvider extends LanguageProvider {
         add(RegistryEvents.ItemRegistry.gold_head.get(), "金头");
         add(RegistryEvents.ItemRegistry.explosive_powder.get(),"爆裂粉末");
         add(RegistryEvents.EffectRegistry.BROKEN_DEFENSE.value(),"破防");
+        add(RegistryEvents.BlockRegistry.altar_frame.get(),"祭坛框架");
 
         add("item.minecraft.potion.effect.broken_defense","破防药水");
         add("item.minecraft.splash_potion.effect.broken_defense","喷溅的破防药水");

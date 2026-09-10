@@ -10,6 +10,7 @@ public class EventsLoader {
     public static void LoadEvents(IEventBus bus) {
         RegistryEvents.CreativeTabs.CREATIVE_MODE_TABS.register(bus);
         RegistryEvents.ItemRegistry.ITEMS.register(bus);
+        RegistryEvents.BlockRegistry.BLOCKS.register(bus);
         RegistryEvents.EffectRegistry.MOB_EFFECTS.register(bus);
         RegistryEvents.PotionRegistry.POTIONS.register(bus);
         RegistryEvents.EnchantmentRegistry.ENCHANTMENTS.register(bus);

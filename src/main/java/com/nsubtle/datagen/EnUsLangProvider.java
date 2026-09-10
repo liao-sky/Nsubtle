@@ -20,6 +20,7 @@ public class EnUsLangProvider extends LanguageProvider {
         add(RegistryEvents.ItemRegistry.gold_head.get(), "Gold Head");
         add(RegistryEvents.ItemRegistry.explosive_powder.get(),"Explosive Powder");
         add(RegistryEvents.EffectRegistry.BROKEN_DEFENSE.value(),"Broken Defense");
+        add(RegistryEvents.BlockRegistry.altar_frame.get(),"Altar Frame");
 
         add("item.minecraft.potion.effect.broken_defense","Potion of Broken Defense");
         add("item.minecraft.splash_potion.effect.broken_defense", "Splash Potion of Broken Defense");

@@ -9,8 +9,8 @@ import java.util.concurrent.CompletableFuture;
 
 import static com.nsubtle.Nsubtle.MOD_ID;
 
-public class ItemTagProvider extends ItemTagsProvider {
-    public ItemTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+public class ModItemTagProvider extends ItemTagsProvider {
+    public ModItemTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
         super(output, lookupProvider, MOD_ID);
     }
 

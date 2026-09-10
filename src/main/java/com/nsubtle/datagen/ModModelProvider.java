@@ -19,6 +19,7 @@ public class ModModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ItemRegistry.soup.get(),ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ItemRegistry.gold_head.get(),ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ItemRegistry.explosive_powder.get(),ModelTemplates.FLAT_ITEM);
+        blockModels.createTrivialCube(BlockRegistry.altar_frame.get());
     }
 
 }

@@ -8,8 +8,8 @@ import java.util.concurrent.CompletableFuture;
 
 import static com.nsubtle.Nsubtle.MOD_ID;
 
-public class BlockTagProvider extends BlockTagsProvider {
-    public BlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+public class ModBlockTagProvider extends BlockTagsProvider {
+    public ModBlockTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
         super(output, lookupProvider, MOD_ID);
     }
 

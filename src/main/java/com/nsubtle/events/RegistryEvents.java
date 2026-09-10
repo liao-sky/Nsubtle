@@ -3,6 +3,7 @@ package com.nsubtle.events;
 
 import com.nsubtle.effect.NsubtleEffects;
 import com.nsubtle.list.ItemList;
+import com.nsubtle.list.BlockList;
 import net.minecraft.core.Holder;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
@@ -12,12 +13,11 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.util.Unit;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -57,8 +57,22 @@ public class RegistryEvents {
                         .food(FoodList.gold_head_fp,FoodList.gold_head)
                         .stacksTo(16)));
 
-        public static final DeferredItem<Item> explosive_powder = ITEMS.registerItem("explosive_powder",properties->
-                new Item(ItemList.explosive_powder(properties)));
+        public static final DeferredItem<Item> explosive_powder = ITEMS.registerItem("explosive_powder",
+                Item::new,
+                ItemList::explosive_powder
+        );
+
+        public static final DeferredItem<BlockItem> altar_frame = ITEMS.registerSimpleBlockItem(BlockRegistry.altar_frame);
+    }
+
+    public static class BlockRegistry{
+        public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MOD_ID);
+
+        public static final DeferredBlock<Block>  altar_frame = BLOCKS.registerBlock(
+                "altar_frame",
+                Block::new,
+                BlockList::altar_frame
+        );
     }
 
     public static class PotionRegistry{

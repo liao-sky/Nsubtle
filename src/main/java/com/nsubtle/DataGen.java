@@ -9,6 +9,9 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
+import java.util.Set;
+import java.util.concurrent.CompletableFuture;
+
 @EventBusSubscriber(modid = Nsubtle.MOD_ID)
 public class DataGen {
 
@@ -21,13 +24,23 @@ public class DataGen {
         event.createProvider(ModModelProvider::new);
         event.createProvider(ZnChLangProvider::new);
         event.createProvider(EnUsLangProvider::new);
-        event.createProvider(ModRecipeProvider.Runner::new);
     }
 
     @SubscribeEvent
     public static void OnServerGatherData(GatherDataEvent.Server event) {
         DataGenerator generator = event.getGenerator();
         PackOutput packOutput = generator.getPackOutput();
-        HolderLookup.Provider lookupProvider = event.getLookupProvider().join();
+        CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
+
+        event.createProvider(ModRecipeProvider.Runner::new);
+        event.createProvider(ModLootTableProvider::new);
+
+        generator.addProvider(true, new ModEnchantmentProvider.ModDatapackProvider(
+                packOutput,
+                event.getLookupProvider(),
+                Set.of(Nsubtle.MOD_ID)
+        ));
+        generator.addProvider(true, new ModEnchantmentProvider.ModEnchantmentTagProvider(packOutput,
+                lookupProvider));
     }
 }
