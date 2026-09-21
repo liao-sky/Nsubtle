@@ -42,5 +42,6 @@ public class DataGen {
         ));
         generator.addProvider(true, new ModEnchantmentProvider.ModEnchantmentTagProvider(packOutput,
                 lookupProvider));
+        generator.addProvider(true, new ModBlockTagProvider(packOutput, lookupProvider));
     }
 }
