@@ -10,17 +10,18 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Set;
 
 public class ModBlockLootProvider extends BlockLootSubProvider {
+
     protected ModBlockLootProvider(HolderLookup.Provider registries) {
-        super(Set.of(), FeatureFlags.REGISTRY.allFlags(),registries);
+        super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
     }
 
     @Override
     protected void generate() {
-        dropSelf(RegistryEvents.BlockRegistry.altar_frame.get());
+        dropSelf(RegistryEvents.BlockRegistry.ALTAR_FRAME.get());
     }
 
     @Override
     protected @NotNull Iterable<Block> getKnownBlocks() {
-        return Set.of(RegistryEvents.BlockRegistry.altar_frame.get());
+        return Set.of(RegistryEvents.BlockRegistry.ALTAR_FRAME.get());
     }
 }

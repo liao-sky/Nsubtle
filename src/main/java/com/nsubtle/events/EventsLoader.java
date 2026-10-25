@@ -4,18 +4,23 @@ import com.nsubtle.effect.NsubtleEffects;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.NeoForge;
 
+/**
+ * 注册与事件总线的统一挂载点。
+ */
+public final class EventsLoader {
 
-public class EventsLoader {
+    private EventsLoader() {
+    }
 
-    public static void LoadEvents(IEventBus bus) {
-        RegistryEvents.CreativeTabs.CREATIVE_MODE_TABS.register(bus);
-        RegistryEvents.ItemRegistry.ITEMS.register(bus);
-        RegistryEvents.BlockRegistry.BLOCKS.register(bus);
-        RegistryEvents.EffectRegistry.MOB_EFFECTS.register(bus);
-        RegistryEvents.PotionRegistry.POTIONS.register(bus);
-        RegistryEvents.EnchantmentRegistry.ENCHANTMENTS.register(bus);
+    public static void loadEvents(IEventBus modEventBus) {
+        RegistryEvents.CreativeTabs.CREATIVE_MODE_TABS.register(modEventBus);
+        RegistryEvents.ItemRegistry.ITEMS.register(modEventBus);
+        RegistryEvents.BlockRegistry.BLOCKS.register(modEventBus);
+        RegistryEvents.EffectRegistry.MOB_EFFECTS.register(modEventBus);
+        RegistryEvents.PotionRegistry.POTIONS.register(modEventBus);
+        RegistryEvents.EnchantmentRegistry.ENCHANTMENT_EFFECT_COMPONENTS.register(modEventBus);
 
-        bus.addListener(ModEvents::addCreativeTab);
+        modEventBus.addListener(ModEvents::addCreativeTab);
         NeoForge.EVENT_BUS.addListener(ModEvents::bucketRightClick);
         NeoForge.EVENT_BUS.register(NsubtleEffects.class);
     }

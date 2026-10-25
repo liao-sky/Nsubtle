@@ -5,7 +5,10 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.*;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.NotNull;
@@ -15,17 +18,17 @@ import java.util.concurrent.CompletableFuture;
 import static com.nsubtle.Nsubtle.MOD_ID;
 
 public class ModRecipeProvider extends RecipeProvider {
+
     private final HolderGetter<Item> items;
 
     public ModRecipeProvider(HolderLookup.Provider registries, RecipeOutput recipeOutput) {
         super(registries, recipeOutput);
-
-        items = registries.lookupOrThrow(Registries.ITEM);
+        this.items = registries.lookupOrThrow(Registries.ITEM);
     }
 
     @Override
     protected void buildRecipes() {
-        ShapedRecipeBuilder.shaped(items, RecipeCategory.FOOD, RegistryEvents.ItemRegistry.soup.asItem(),2)
+        ShapedRecipeBuilder.shaped(items, RecipeCategory.FOOD, RegistryEvents.ItemRegistry.SOUP.asItem(), 2)
                 .pattern("LGL")
                 .pattern("GBG")
                 .pattern("LGL")
@@ -35,7 +38,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_lapis_lazuli", has(Items.LAPIS_LAZULI))
                 .save(output);
 
-        ShapedRecipeBuilder.shaped(items, RecipeCategory.FOOD, RegistryEvents.ItemRegistry.gold_head.asItem(),2)
+        ShapedRecipeBuilder.shaped(items, RecipeCategory.FOOD, RegistryEvents.ItemRegistry.GOLD_HEAD.asItem(), 2)
                 .pattern("LGL")
                 .pattern("GBG")
                 .pattern("LGL")
@@ -45,7 +48,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_lapis_lazuli", has(Items.LAPIS_LAZULI))
                 .save(output);
 
-        ShapedRecipeBuilder.shaped(items, RecipeCategory.MISC, RegistryEvents.ItemRegistry.explosive_powder.asItem(),4)
+        ShapedRecipeBuilder.shaped(items, RecipeCategory.MISC, RegistryEvents.ItemRegistry.EXPLOSIVE_POWDER.asItem(), 4)
                 .pattern("LGL")
                 .pattern("GBG")
                 .pattern("LGL")
@@ -67,7 +70,8 @@ public class ModRecipeProvider extends RecipeProvider {
         }
 
         @Override
-        protected @NotNull RecipeProvider createRecipeProvider(HolderLookup.@NotNull Provider provider, @NotNull RecipeOutput recipeOutput) {
+        protected @NotNull RecipeProvider createRecipeProvider(HolderLookup.@NotNull Provider provider,
+                                                              @NotNull RecipeOutput recipeOutput) {
             return new ModRecipeProvider(provider, recipeOutput);
         }
 
@@ -75,6 +79,5 @@ public class ModRecipeProvider extends RecipeProvider {
         public @NotNull String getName() {
             return MOD_ID;
         }
-
     }
 }

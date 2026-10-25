@@ -1,2 +1,22 @@
-/src/generated/resources/client/.cache/
-/src/generated/resources/server/.cache/
+# Gradle
+.gradle/
+build/
+
+# IntelliJ IDEA（.idea 中的共享配置仍然保留，只忽略用户级文件）
+.idea/workspace.xml
+.idea/shelf/
+.idea/claudeCodeTabState.xml
+*.iml
+*.ipr
+*.iws
+
+# 游戏运行目录（存档、日志、崩溃报告、配置等）
+run/
+
+# datagen 缓存
+src/generated/resources/client/.cache/
+src/generated/resources/server/.cache/
+
+# 系统文件
+.DS_Store
+Thumbs.db

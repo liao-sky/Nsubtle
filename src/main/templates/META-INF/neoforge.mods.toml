@@ -40,7 +40,11 @@ displayName="${mod_name}" #mandatory
 
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-Example mod description.
+Not That Subtle World.
+
+A small NeoForge mod built around deliberately unfair mechanics: the armor-breaking
+"Broken Defense" debuff, the Tough enchantment that resists it, bonemeal-triggered
+tree explosions, water-bucket trident tricks and instant wet farmland.
 '''
 
 # The [[mixins]] block allows you to declare your mixin config to FML so that it gets loaded.

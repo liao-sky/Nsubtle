@@ -5,9 +5,14 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 
+/**
+ * 本模组效果的基类：默认每个 tick 都允许结算，具体逻辑由子类覆盖
+ * {@link #applyEffectTick(ServerLevel, LivingEntity, int)}。
+ */
 public abstract class NsubtleEffect extends MobEffect {
-    public NsubtleEffect(MobEffectCategory p_category, int p_color) {
-        super(p_category, p_color);
+
+    protected NsubtleEffect(MobEffectCategory category, int color) {
+        super(category, color);
     }
 
     @Override
@@ -19,15 +24,4 @@ public abstract class NsubtleEffect extends MobEffect {
     public boolean shouldApplyEffectTickThisTick(int tickCount, int amplifier) {
         return true;
     }
-
-
-    @Override
-    public void onEffectAdded(LivingEntity entity, int amplifier) {
-        super.onEffectAdded(entity, amplifier);
-    }
-
-    @Override
-    public void onEffectStarted(LivingEntity entity, int amplifier) {
-    }
-
 }

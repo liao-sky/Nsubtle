@@ -1,4 +1,6 @@
 {
+  "advancements.nsubtle.tree_boom.description": "违反自然，那么代价是？",
+  "advancements.nsubtle.tree_boom.title": "催生？",
   "block.nsubtle.altar_frame": "祭坛框架",
   "effect.nsubtle.broken_defense": "破防",
   "effect.nsubtle.broken_defense.armor_break": "§4!你的甲不堪重负!§4",
@@ -7,7 +9,7 @@
   "effect.nsubtle.broken_defense.hurt": "§4受到伤害x%s§4",
   "effect.nsubtle.broken_defense.warning": "§4!警告，破防层数过高!§4",
   "enchantment.nsubtle.tough": "坚韧",
-  "enchantment.nsubtle.tough.desc": "你的盔甲将更加坚硬，不再容易破防",
+  "enchantment.nsubtle.tough.desc": "你的盔甲将更加坚硬，更能抵抗破防",
   "item.minecraft.lingering_potion.effect.broken_defense": "滞留的破防药水",
   "item.minecraft.potion.effect.broken_defense": "破防药水",
   "item.minecraft.splash_potion.effect.broken_defense": "喷溅的破防药水",

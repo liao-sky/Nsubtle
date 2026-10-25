@@ -14,45 +14,51 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 
-public class ModEvents {
+public final class ModEvents {
 
-    @SubscribeEvent
-    public static void addCreativeTab(BuildCreativeModeTabContentsEvent event) {
-        if(event.getTab() == RegistryEvents.CreativeTabs.NSUBTLE.get()){
-            event.acceptAll(RegistryEvents.ItemRegistry.ITEMS.getEntries().stream()
-                    .map(holder->holder.get().getDefaultInstance())
-                    .toList());
-        }
-
+    private ModEvents() {
     }
 
+    /**
+     * 把所有已注册物品放进本模组的创造模式标签页。
+     */
+    @SubscribeEvent
+    public static void addCreativeTab(BuildCreativeModeTabContentsEvent event) {
+        if (event.getTab() == RegistryEvents.CreativeTabs.NSUBTLE.get()) {
+            event.acceptAll(RegistryEvents.ItemRegistry.ITEMS.getEntries().stream()
+                    .map(holder -> holder.get().getDefaultInstance())
+                    .toList());
+        }
+    }
+
+    /**
+     * 主手锄 + 副手水桶右键泥土类方块：直接变成湿润耕地。
+     * <p>
+     * 目前不消耗水、也不损耗锄，属于刻意保留的“取巧”机制。
+     */
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void bucketRightClick(PlayerInteractEvent.RightClickBlock event) {
-            if (event.isCanceled()) {
-                return;
-            }
-            Level level = event.getLevel();
-            if (level.isClientSide()) {
-                return;
-            }
-            ItemStack mainHandItem = event.getItemStack();
-            if (!mainHandItem.is(ItemTags.HOES)) {
-                return;
-            }
-            ItemStack offhandItem = event.getEntity().getOffhandItem();
-            if (!offhandItem.is(Items.WATER_BUCKET)) {
-                return;
-            }
-            BlockPos pos = event.getPos();
-            BlockState targetBlock = level.getBlockState(pos);
-            Block farmlandBlock = Blocks.FARMLAND;
-
-            if (!targetBlock.is(Blocks.DIRT) && !targetBlock.is(Blocks.GRASS_BLOCK) && !targetBlock.is(Blocks.DIRT_PATH)) {
-                return;
-            }
-            BlockState wetFarmland = farmlandBlock.defaultBlockState().setValue(FarmBlock.MOISTURE, 7);
-            level.setBlock(pos, wetFarmland, 3); // Block.UPDATE_ALL
-
-            event.setCanceled(true);
+        if (event.isCanceled() || event.getLevel().isClientSide()) {
+            return;
         }
+
+        ItemStack mainHand = event.getItemStack();
+        if (!mainHand.is(ItemTags.HOES)) {
+            return;
+        }
+        if (!event.getEntity().getOffhandItem().is(Items.WATER_BUCKET)) {
+            return;
+        }
+
+        BlockPos pos = event.getPos();
+        BlockState target = event.getLevel().getBlockState(pos);
+        if (!target.is(Blocks.DIRT) && !target.is(Blocks.GRASS_BLOCK) && !target.is(Blocks.DIRT_PATH)) {
+            return;
+        }
+
+        Level level = event.getLevel();
+        BlockState wetFarmland = Blocks.FARMLAND.defaultBlockState().setValue(FarmBlock.MOISTURE, FarmBlock.MAX_MOISTURE);
+        level.setBlock(pos, wetFarmland, Block.UPDATE_ALL);
+        event.setCanceled(true);
+    }
 }

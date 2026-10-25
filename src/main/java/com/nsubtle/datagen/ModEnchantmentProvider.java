@@ -14,27 +14,34 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-public class ModEnchantmentProvider {
+public final class ModEnchantmentProvider {
 
+    private ModEnchantmentProvider() {
+    }
+
+    /** 生成 {@code data/nsubtle/enchantment/*.json}。 */
     public static class ModDatapackProvider extends DatapackBuiltinEntriesProvider {
+
         public static final RegistrySetBuilder BUILDER = new RegistrySetBuilder()
                 .add(Registries.ENCHANTMENT, EnchantmentList::bootstrap);
 
-        public ModDatapackProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, Set<String> modIds) {
+        public ModDatapackProvider(PackOutput output,
+                                   CompletableFuture<HolderLookup.Provider> registries,
+                                   Set<String> modIds) {
             super(output, registries, BUILDER, modIds);
         }
     }
 
-
+    /** 生成附魔标签（坚韧属于非宝藏附魔）。 */
     public static class ModEnchantmentTagProvider extends EnchantmentTagsProvider {
-        public ModEnchantmentTagProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+
+        public ModEnchantmentTagProvider(PackOutput output,
+                                         CompletableFuture<HolderLookup.Provider> lookupProvider) {
             super(output, lookupProvider, Nsubtle.MOD_ID);
         }
 
         @Override
-        protected void addTags(HolderLookup.@NotNull Provider pProvider) {
-            //tag(EnchantmentTags.CURSE).addOptional(EnchantmentRegistry.AFFECTION)
-            //tag(EnchantmentTags.TREASURE).addOptional(EnchantmentRegistry.AFFECTION)
+        protected void addTags(HolderLookup.@NotNull Provider provider) {
             tag(EnchantmentTags.NON_TREASURE).addOptional(EnchantmentList.TOUGH);
         }
     }
