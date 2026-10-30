@@ -32,7 +32,7 @@ public final class ModEnchantmentProvider {
         }
     }
 
-    /** 生成附魔标签（坚韧属于非宝藏附魔）。 */
+    /** 生成附魔标签：坚韧属于非宝藏附魔，生机属于宝藏附魔。 */
     public static class ModEnchantmentTagProvider extends EnchantmentTagsProvider {
 
         public ModEnchantmentTagProvider(PackOutput output,
@@ -43,6 +43,11 @@ public final class ModEnchantmentProvider {
         @Override
         protected void addTags(HolderLookup.@NotNull Provider provider) {
             tag(EnchantmentTags.NON_TREASURE).addOptional(EnchantmentList.TOUGH);
+
+            // 生机：只从战利品/交易获得，不进附魔台。
+            tag(EnchantmentTags.TREASURE).addOptional(EnchantmentList.VITALITY);
+            tag(EnchantmentTags.ON_RANDOM_LOOT).addOptional(EnchantmentList.VITALITY);
+            tag(EnchantmentTags.TRADEABLE).addOptional(EnchantmentList.VITALITY);
         }
     }
 }

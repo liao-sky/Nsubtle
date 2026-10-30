@@ -19,9 +19,12 @@ public final class EventsLoader {
         RegistryEvents.EffectRegistry.MOB_EFFECTS.register(modEventBus);
         RegistryEvents.PotionRegistry.POTIONS.register(modEventBus);
         RegistryEvents.EnchantmentRegistry.ENCHANTMENT_EFFECT_COMPONENTS.register(modEventBus);
+        RegistryEvents.EntityRegistry.ENTITIES.register(modEventBus);
+        RegistryEvents.DataComponentRegistry.COMPONENTS.register(modEventBus);
 
         modEventBus.addListener(ModEvents::addCreativeTab);
         NeoForge.EVENT_BUS.addListener(ModEvents::bucketRightClick);
+        NeoForge.EVENT_BUS.addListener(ModEvents::itemTooltip);
         NeoForge.EVENT_BUS.register(NsubtleEffects.class);
     }
 }

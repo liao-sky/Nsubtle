@@ -1,7 +1,9 @@
 package com.nsubtle.events;
 
 import com.nsubtle.Nsubtle;
+import com.nsubtle.component.SaplingLoad;
 import com.nsubtle.effect.NsubtleEffects;
+import com.nsubtle.entity.SaplingProjectile;
 import com.nsubtle.list.BlockList;
 import com.nsubtle.list.FoodList;
 import net.minecraft.core.component.DataComponentType;
@@ -12,6 +14,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.util.Unit;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -90,6 +94,36 @@ public final class RegistryEvents {
                 "altar_frame",
                 Block::new,
                 BlockList::altarFrame);
+    }
+
+    /**
+     * 实体类型注册。目前只有“树苗投掷物”。
+     */
+    public static final class EntityRegistry {
+
+        public static final DeferredRegister.Entities ENTITIES = DeferredRegister.createEntities(MOD_ID);
+
+        public static final DeferredHolder<EntityType<?>, EntityType<SaplingProjectile>> SAPLING_PROJECTILE =
+                ENTITIES.registerEntityType("sapling_projectile", SaplingProjectile::new, MobCategory.MISC,
+                        builder -> builder
+                                .sized(0.35F, 0.35F)
+                                .clientTrackingRange(4)
+                                .updateInterval(10));
+    }
+
+    /**
+     * 自定义数据组件：把“树苗 + 骨粉”的装填状态挂在弓/弩物品上。
+     */
+    public static final class DataComponentRegistry {
+
+        public static final DeferredRegister.DataComponents COMPONENTS =
+                DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE, MOD_ID);
+
+        public static final DeferredHolder<DataComponentType<?>, DataComponentType<SaplingLoad>> SAPLING_LOAD =
+                COMPONENTS.registerComponentType("sapling_load",
+                        builder -> builder
+                                .persistent(SaplingLoad.CODEC)
+                                .networkSynchronized(SaplingLoad.STREAM_CODEC));
     }
 
     public static final class PotionRegistry {

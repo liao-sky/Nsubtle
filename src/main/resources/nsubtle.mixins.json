@@ -4,6 +4,9 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "PotionRecipeMixin",
+    "SaplingBlockAccessor",
+    "SaplingWeaponMixin$BowItemMixin",
+    "SaplingWeaponMixin$CrossbowItemMixin",
     "TreeBoomMixin$SaplingBlockMixin",
     "TreeBoomMixin$TreeGrowerMixin",
     "WaterBucketMixin$TridentItemMixin"

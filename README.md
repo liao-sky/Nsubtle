@@ -1,11 +1,13 @@
 # Nsubtle — Not That Subtle World
 
 一个面向 **Minecraft 1.21.10 / NeoForge 21.10.64** 的小型玩法模组。名字里的 “Subtle” 是反话：
-这里塞进去的机制基本都不太讲道理——护甲会被打穿、骨粉催树会爆炸、拿桶水就能在陆地上捅三叉戟。
+这里塞进去的机制基本都不太讲道理——护甲会被打穿、骨粉催树会爆炸、拿桶水就能在陆地上捅三叉戟、
+树苗加骨粉塞进弓里还能当炮弹射出去。
 
 > English: A small NeoForge 1.21.10 mod built around deliberately unfair combat and interaction mechanics:
 > the armor-breaking **Broken Defense** debuff, the **Tough** enchantment that resists it, bonemeal-triggered
-> tree explosions, water-bucket trident tricks and instant wet farmland.
+> tree explosions, water-bucket trident tricks, sapling-and-bonemeal bombs fired from bows and crossbows,
+> and instant wet farmland.
 
 ---
 
@@ -21,6 +23,8 @@
 | 水桶三叉戟 | 副手拿水桶时，陆地也能使用/释放三叉戟 | [`WaterBucketMixin`](src/main/java/com/nsubtle/mixin/WaterBucketMixin.java) |
 | 锄 + 水桶 | 主手锄、副手水桶右键泥土类方块 → 湿润耕地 | [`ModEvents`](src/main/java/com/nsubtle/events/ModEvents.java) |
 | 食物 | 「羹」随机六选三效果、「金头」快速食用 + 多重增益 | [`FoodList`](src/main/java/com/nsubtle/list/FoodList.java) |
+| 树苗投掷 | 弩先装骨粉再装树苗、右键发射；弓副手拿树苗 + 背包骨粉，松手直接消耗发射 | [`SaplingProjectile`](src/main/java/com/nsubtle/entity/SaplingProjectile.java) |
+| 生机（宝藏附魔） | 仅弓/弩，装填不再需要也不会消耗骨粉，弩可以直接装树苗 | [`EnchantmentList`](src/main/java/com/nsubtle/list/EnchantmentList.java) |
 
 具体数值、公式与配方见 **[docs/MECHANICS.md](docs/MECHANICS.md)**。
 

@@ -32,6 +32,10 @@ public class EnUsLangProvider extends LanguageProvider {
         addEnchantmentDescription(this, EnchantmentList.TOUGH,
                 "Your armor is tougher and resists Broken Defense.");
 
+        addEnchantment(this, EnchantmentList.VITALITY, "Vitality");
+        addEnchantmentDescription(this, EnchantmentList.VITALITY,
+                "Sapling bombs no longer need or consume bone meal; crossbows can load saplings directly.");
+
         add("itemGroup." + MOD_ID + ".nsubtle", "Nsubtle");
 
         add("advancements." + MOD_ID + ".tree_boom.title", "Forced Growth?");
@@ -42,5 +46,12 @@ public class EnUsLangProvider extends LanguageProvider {
         add("effect.nsubtle.broken_defense.warning", "§4! WARNING, BROKEN DEFENSE LAYERS IS TOO HIGH!§4");
         add("effect.nsubtle.broken_defense.armor_break", "§4!YOUR ARMOR IS OVERWHELMED!§4");
         add("effect.nsubtle.broken_defense.break", "§d!?(BE) BROKEN DEFENSE?!§d");
+
+        add("entity." + MOD_ID + ".sapling_projectile", "Sapling Bomb");
+        add("tooltip.nsubtle.sapling_loaded", "Loaded: %s");
+        add("tooltip.nsubtle.sapling_ready", "Bone meal primed — right-click to fire");
+        add("tooltip.nsubtle.powder_loaded", "Bone meal loaded");
+        add("tooltip.nsubtle.powder_needs_sapling", "Needs a sapling");
+        add("tooltip.nsubtle.bow_sapling", "Sapling + bone meal: release the bow to fire a sapling bomb");
     }
 }

@@ -10,6 +10,9 @@
   "effect.nsubtle.broken_defense.warning": "§4! WARNING, BROKEN DEFENSE LAYERS IS TOO HIGH!§4",
   "enchantment.nsubtle.tough": "Tough",
   "enchantment.nsubtle.tough.desc": "Your armor is tougher and resists Broken Defense.",
+  "enchantment.nsubtle.vitality": "Vitality",
+  "enchantment.nsubtle.vitality.desc": "Sapling bombs no longer need or consume bone meal; crossbows can load saplings directly.",
+  "entity.nsubtle.sapling_projectile": "Sapling Bomb",
   "item.minecraft.lingering_potion.effect.broken_defense": "Lingering Potion of Broken Defense",
   "item.minecraft.potion.effect.broken_defense": "Potion of Broken Defense",
   "item.minecraft.splash_potion.effect.broken_defense": "Splash Potion of Broken Defense",
@@ -17,5 +20,10 @@
   "item.nsubtle.explosive_powder": "Explosive Powder",
   "item.nsubtle.gold_head": "Gold Head",
   "item.nsubtle.soup": "Soup",
-  "itemGroup.nsubtle.nsubtle": "Nsubtle"
+  "itemGroup.nsubtle.nsubtle": "Nsubtle",
+  "tooltip.nsubtle.bow_sapling": "Sapling + bone meal: release the bow to fire a sapling bomb",
+  "tooltip.nsubtle.powder_loaded": "Bone meal loaded",
+  "tooltip.nsubtle.powder_needs_sapling": "Needs a sapling",
+  "tooltip.nsubtle.sapling_loaded": "Loaded: %s",
+  "tooltip.nsubtle.sapling_ready": "Bone meal primed — right-click to fire"
 }

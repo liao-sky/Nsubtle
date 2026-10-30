@@ -31,6 +31,10 @@ public class ZnChLangProvider extends LanguageProvider {
         addEnchantment(this, EnchantmentList.TOUGH, "坚韧");
         addEnchantmentDescription(this, EnchantmentList.TOUGH, "你的盔甲将更加坚硬，更能抵抗破防");
 
+        addEnchantment(this, EnchantmentList.VITALITY, "生机");
+        addEnchantmentDescription(this, EnchantmentList.VITALITY,
+                "树苗炸弹不再需要也不会消耗骨粉，弩可以直接装树苗");
+
         add("itemGroup." + MOD_ID + ".nsubtle", "Nsubtle");
 
         add("advancements." + MOD_ID + ".tree_boom.title", "催生？");
@@ -41,5 +45,12 @@ public class ZnChLangProvider extends LanguageProvider {
         add("effect.nsubtle.broken_defense.warning", "§4!警告，破防层数过高!§4");
         add("effect.nsubtle.broken_defense.armor_break", "§4!你的甲不堪重负!§4");
         add("effect.nsubtle.broken_defense.break", "§d!?(被)破防?!§d");
+
+        add("entity." + MOD_ID + ".sapling_projectile", "树苗炸弹");
+        add("tooltip.nsubtle.sapling_loaded", "已装填：%s");
+        add("tooltip.nsubtle.sapling_ready", "骨粉已就绪 —— 右键发射");
+        add("tooltip.nsubtle.powder_loaded", "已装入骨粉");
+        add("tooltip.nsubtle.powder_needs_sapling", "还需要装入一枚树苗");
+        add("tooltip.nsubtle.bow_sapling", "副手树苗 + 骨粉：松开弓弦发射树苗炸弹");
     }
 }
