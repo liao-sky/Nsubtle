@@ -1,0 +1,26 @@
+{
+  "model": {
+    "type": "minecraft:condition",
+    "property": "minecraft:using_item",
+    "on_false": {
+      "type": "minecraft:model",
+      "model": "minecraft:item/bow"
+    },
+    "on_true": {
+      "type": "minecraft:range_dispatch",
+      "property": "minecraft:use_duration",
+      "scale": 0.0333,
+      "entries": [
+        {
+          "threshold": 0.65,
+          "model": { "type": "minecraft:model", "model": "nsubtle:item/bow_loaded_pale_oak_sapling_1" }
+        },
+        {
+          "threshold": 0.9,
+          "model": { "type": "minecraft:model", "model": "nsubtle:item/bow_loaded_pale_oak_sapling_2" }
+        }
+      ],
+      "fallback": { "type": "minecraft:model", "model": "nsubtle:item/bow_loaded_pale_oak_sapling_0" }
+    }
+  }
+}

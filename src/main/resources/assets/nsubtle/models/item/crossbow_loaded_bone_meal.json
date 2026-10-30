@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/crossbow",
+  "textures": {
+    "layer0": "nsubtle:item/crossbow_loaded_bone_meal"
+  }
+}

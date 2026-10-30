@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/bow_pulling_0",
+  "textures": {
+    "layer0": "nsubtle:item/bow_loaded_spruce_sapling_0"
+  }
+}
